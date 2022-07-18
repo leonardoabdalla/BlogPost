@@ -11,7 +11,6 @@ app.use('/user', userRouter);
 
 app.use((err, _req, res, _next) => {
     const { name, message } = err;
-    console.log("name => ", name, " message => ", message);
     switch (name) {
       case 'ValidationError':
         res.status(400).json({ message });
@@ -24,9 +23,6 @@ app.use((err, _req, res, _next) => {
         break;
       case 'UnauthorizedError':
         res.status(401).json({ message });
-        break;
-      default:
-        res.status(500).json({ message });
         break;
     }
   });
