@@ -11,8 +11,11 @@ const authService = {
 
         const { error, value } = schema.validate(data);
 
-        if (error) throw error;
-        
+        if (error) {
+           const e = new Error('Some required fields are missing');
+           e.name = 'ValidationError';
+           throw e;
+        }
         return value;
     },
 
@@ -20,9 +23,8 @@ const authService = {
         const user = await db.User.findOne({ where: { email } });
 
         if (!user || user.password !== password) {
-            // console.log('ok');
-            const e = new Error('Usuário não existe ou senha inválida');
-            e.name = 'UnauthorizedError';
+            const e = new Error('Invalid fields');
+            e.name = 'ValidationError';
             throw e;
         }
 

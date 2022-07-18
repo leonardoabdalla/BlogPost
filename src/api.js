@@ -1,5 +1,5 @@
 const express = require('express');
-// require('express-async-errors');
+require('express-async-errors');
 const userRouter = require('./routers/userRouter');
 const authRouter = require('./routers/authRouter');
 
@@ -11,6 +11,7 @@ app.use('/user', userRouter);
 
 app.use((err, _req, res, _next) => {
     const { name, message } = err;
+    console.log("name => ", name, " message => ", message);
     switch (name) {
       case 'ValidationError':
         res.status(400).json({ message });
