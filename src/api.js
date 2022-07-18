@@ -24,6 +24,8 @@ app.use((err, _req, res, _next) => {
       case 'UnauthorizedError':
         res.status(401).json({ message });
         break;
+      default:
+        break;
     }
   });
 
