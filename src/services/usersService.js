@@ -26,7 +26,7 @@ const userServices = {
     },
 
     getAll: async () => {
-        const users = await db.User.findAll();
+        const users = await db.User.findAll({ attributes: { exclude: ['password'] } });
         return users;
     },
 

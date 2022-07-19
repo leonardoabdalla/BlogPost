@@ -12,7 +12,13 @@ const jwtService = {
             const data = jwt.verify(token, process.env.JWT_SECRET);
             return data;
         } catch (err) {
-            const error = new Error('token inválido');
+            console.log(' erro =========>    ', err);
+            if (err.message === 'jwt must be provided') {
+                const error = new Error('Token not found');
+                error.name = 'UnauthorizedError';
+                throw error;
+            }
+            const error = new Error('Expired or invalid token');
             error.name = 'UnauthorizedError';
             throw error;
         }
