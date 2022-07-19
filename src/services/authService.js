@@ -32,6 +32,11 @@ const authService = {
 
         return token;
     },
+
+    validateToken: (token) => {
+        const data = jwtService.validateToken(token);
+        return data;
+    },
 };
 
 module.exports = authService;

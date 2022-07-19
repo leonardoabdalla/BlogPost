@@ -2,12 +2,13 @@ const express = require('express');
 require('express-async-errors');
 const userRouter = require('./routers/userRouter');
 const authRouter = require('./routers/authRouter');
+const authController = require('./controllers/authController');
 
 const app = express();
 
 app.use(express.json());
 app.use('/login', authRouter);
-app.use('/user', userRouter);
+app.use('/user', authController.validateToken, userRouter);
 
 app.use((err, _req, res, _next) => {
     const { name, message } = err;
@@ -25,7 +26,7 @@ app.use((err, _req, res, _next) => {
         res.status(401).json({ message });
         break;
       default:
-        res.status(409).json({ message: 'User already registered' });
+        res.status(409).json({ message: '"email" must be a valid email' });
         break;
     }
   });

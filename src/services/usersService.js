@@ -11,9 +11,9 @@ const userServices = {
         });      
         const { error, value } = schema.validate(data);
         console.log('erro ===> ', error);
-        // if (error === undefined) {
+        // if (error) {
         //     const e = new Error('"email" must be a valid email');
-        //     e.name = 'ValidaEmail';
+        //     e.name = 'ValidationError';
         //     throw e;
         // }
         if (error) throw error;
@@ -22,6 +22,16 @@ const userServices = {
     
     create: async ({ displayName, email, password, image }) => {
         const user = await db.User.create({ displayName, email, password, image });
+        return user;
+    },
+
+    getAll: async () => {
+        const users = await db.User.findAll();
+        return users;
+    },
+
+    getById: async () => {
+        const user = await db.User.findOne();
         return user;
     },
 };
