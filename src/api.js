@@ -15,16 +15,17 @@ app.use((err, _req, res, _next) => {
       case 'ValidationError':
         res.status(400).json({ message });
         break;
-      case 'NotFoundError':
+      case '':
         res.status(404).json({ message });
         break;
-      case 'ConflictError':
+      case 'ValidaEmail':
         res.status(409).json({ message });
         break;
       case 'UnauthorizedError':
         res.status(401).json({ message });
         break;
       default:
+        res.status(409).json({ message: 'User already registered' });
         break;
     }
   });

@@ -4,19 +4,19 @@ const db = require('../database/models');
 const userServices = {
     validateBody: (data) => {
         const schema = Joi.object({
-            displayName: Joi.string().min(8).require(),
-            email: Joi.string().email().require(),
-            password: Joi.string().min(6).require(),
-        });
-        
+            displayName: Joi.string().min(8).required(),
+            email: Joi.string().email().required(),
+            password: Joi.string().min(6).required(),
+            image: Joi.string(),
+        });      
         const { error, value } = schema.validate(data);
-        console.log(error);
-        
-        if (error) {
-            const e = new Error('Some required fields are missing');
-            e.name = 'ValidationError';
-            throw e;
-        }
+        console.log('erro ===> ', error);
+        // if (error === undefined) {
+        //     const e = new Error('"email" must be a valid email');
+        //     e.name = 'ValidaEmail';
+        //     throw e;
+        // }
+        if (error) throw error;
         return value;
     },
     
