@@ -15,7 +15,7 @@ app.use((err, _req, res, _next) => {
       case 'ValidationError':
         res.status(400).json({ message });
         break;
-      case '':
+      case 'idNull':
         res.status(404).json({ message });
         break;
       case 'ValidaEmail':

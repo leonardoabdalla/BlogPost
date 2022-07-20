@@ -31,7 +31,13 @@ const userServices = {
     },
 
     getById: async (id) => {
-        const user = await db.User.findByPk(id);
+        const user = await db.User.findByPk(id, { attributes: { exclude: ['password'] } });
+        if (user === null) {
+            const e = new Error('User does not exist');
+            e.name = 'idNull';
+            throw e;
+        }
+        console.log(user);
         return user;
     },
 };
