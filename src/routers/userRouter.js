@@ -4,7 +4,7 @@ const userController = require('../controllers/userController');
 const router = Router();
 
 router.post('/', userController.create);
-router.get('/', userController.getAll);
 router.get('/:id', userController.getById);
+router.get('/', userController.getAll);
 
 module.exports = router;

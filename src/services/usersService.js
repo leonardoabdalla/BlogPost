@@ -30,8 +30,8 @@ const userServices = {
         return users;
     },
 
-    getById: async () => {
-        const user = await db.User.findOne();
+    getById: async (id) => {
+        const user = await db.User.findByPk(id);
         return user;
     },
 };
