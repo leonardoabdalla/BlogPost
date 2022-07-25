@@ -3,7 +3,9 @@ require('dotenv');
 
 const jwtService = {
     createToken: (data) => {
+        console.log('chegando na função ===> ', data);
         const token = jwt.sign({ data }, process.env.JWT_SECRET);
+        console.log('token criado ==> ', token);
         return token;
     },
 
@@ -12,7 +14,6 @@ const jwtService = {
             const data = jwt.verify(token, process.env.JWT_SECRET);
             return data;
         } catch (err) {
-            console.log(' erro =========>    ', err);
             if (err.message === 'jwt must be provided') {
                 const error = new Error('Token not found');
                 error.name = 'UnauthorizedError';

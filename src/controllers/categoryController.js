@@ -3,13 +3,14 @@ const token = require('../services/jwtService');
 
 const categoryController = {
     create: async (req, res) => {
+        console.log('entrou');
         const { name } = categoryService.validateBody(req.body);
         const category = await categoryService.create({
             name,
         });
-        const token2 = token.createToken();
+        token.createToken({ name });
         console.log(category);
-        return res.status(201).json({ token: token2 });
+        return res.status(201).json({ id: category.id, name });
     },
 
     getAll: async (req, res) => {
