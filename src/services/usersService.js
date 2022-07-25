@@ -10,17 +10,12 @@ const userServices = {
             image: Joi.string(),
         });      
         const { error, value } = schema.validate(data);
-        console.log('erro ===> ', error);
-        // if (error) {
-        //     const e = new Error('"email" must be a valid email');
-        //     e.name = 'ValidationError';
-        //     throw e;
-        // }
         if (error) throw error;
         return value;
     },
     
     create: async ({ displayName, email, password, image }) => {
+        console.log('userservice ===> ');
         const user = await db.User.create({ displayName, email, password, image });
         return user;
     },

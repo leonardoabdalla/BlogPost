@@ -10,7 +10,7 @@ const userController = {
             password,
             image,
         });
-        const token2 = token.createToken();
+        const token2 = token.createToken({ displayName, email, id: user.id });
         console.log(user);
         return res.status(201).json({ token: token2 });
     },
