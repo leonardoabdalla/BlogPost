@@ -3,7 +3,6 @@ const token = require('../services/jwtService');
 
 const categoryController = {
     create: async (req, res) => {
-        console.log('entrou');
         const { name } = categoryService.validateBody(req.body);
         const category = await categoryService.create({
             name,

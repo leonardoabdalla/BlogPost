@@ -20,7 +20,7 @@ const categoryServices = {
     },
 
     getAll: async () => {
-        const category = await db.User.findAll({ attributes: { exclude: ['password'] } });
+        const category = await db.Category.findAll();
         return category;
     },
 
