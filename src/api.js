@@ -27,7 +27,6 @@ app.use((err, _req, res, _next) => {
         res.status(401).json({ message });
         break;
       default:
-        console.log(err);
         res.status(409).json({ message: 'User already registered' });
         break;
     }
